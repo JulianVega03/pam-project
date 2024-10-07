@@ -17,8 +17,9 @@ import java.util.List;
  * @author Julian Camilo Riveros Fonseca
  */
 @RestController
-    @RequestMapping(value = "/tiposDoc")
+@RequestMapping(value = "/tiposDoc")
 public class TipoDocumentosController {
+
     @Autowired
     private TipoDocumentoService tipoDocumentoService;
 
