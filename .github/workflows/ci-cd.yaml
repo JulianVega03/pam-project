@@ -31,6 +31,6 @@ jobs:
       - name: Pull Image from docker hub
         run: docker pull julianvega03/pam-project:latest
       - name: Delete old container
-        run: docker rm -f springboot-example-container
+        run: docker rm -f pam_project
       - name: Run docker container
         run: docker run --network ubuntu_default -d -p 8080:8080 --name pam_project julianvega03/pam-project
