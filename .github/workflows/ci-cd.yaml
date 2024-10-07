@@ -1,0 +1,36 @@
+name: CICD
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'openjdk'
+          java-version: '17-jdk-slim'
+      - name: Build Project
+        run: mvn clean package -DskipTests
+      - name: Login to docker hub
+        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+      - name: Build docker image
+        run: docker build -t julianvega03/pam-project .
+      - name: Publish image to docker hub
+        run: docker push julianvega03/pam-project:latest
+
+  deploy:
+    needs: build
+    runs-on: [aws-ec2-pam]
+    steps:
+      - name: Pull Image from docker hub
+        run: docker pull julianvega03/pam-project:latest
+      - name: Delete old container
+        run: docker rm -f springboot-example-container
+      - name: Run docker container
+        run: docker run --network ubuntu_default -d -p 8080:8080 --name pam_project julianvega03/pam-project
