@@ -157,5 +157,9 @@ public class UserController {
          return ResponseEntity.ok().body(new AnyResponse("Encargado eliminado con exito!!!"));
     }
 
+    @GetMapping("/health")
+    public String healthCheck() {
+        return "OK";
+    }
 
 }
