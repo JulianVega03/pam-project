@@ -14,7 +14,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'openjdk'
-          java-version: '17-jdk-slim'
+          java-version: '17'
       - name: Build Project
         run: mvn clean package -DskipTests
       - name: Login to docker hub
