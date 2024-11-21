@@ -173,8 +173,7 @@ public class AspiranteEntity implements Serializable {
     /**
      * Estudios a nivel de formación universitaria (pos-grado)
      */
-    @Column(nullable = false)
-    @NotEmpty
+    @Column
     private String estudios_posgrados;
 
     /**
