@@ -33,4 +33,4 @@ jobs:
       - name: Delete old container
         run: docker rm -f pam_project
       - name: Run docker container
-        run: docker run --network ubuntu_default -d -p 8080:8080 --name pam_project julianvega03/pam-project
+        run: docker run --network host -d -p 8080:8080 --name pam_project julianvega03/pam-project
