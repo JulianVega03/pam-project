@@ -34,7 +34,7 @@ public class S3RepositoryImpl implements S3Repository{
     private AmazonS3 s3Client;
 
     private static final Logger log = LoggerFactory.getLogger(S3RepositoryImpl.class);
-    private final String bucket = "pamweb";
+    private final String bucket = "admisionposgrados";
 
     /**
      * Obtiene una lista de DocumentoDTO de los objetos de un bucket de S3.
