@@ -177,8 +177,10 @@ public class S3RepositoryImpl implements S3Repository{
         PutObjectRequest putObjectRequest = new PutObjectRequest(bucket, nombreCarpeta + "/", emptyContent, metadata);
         try {
             s3Client.putObject(putObjectRequest);
+            System.out.println("CARPETA CREADA : ");
             return true;
         } catch (AmazonS3Exception e) {
+            System.out.println("ERROR : " + e);
             if (e.getStatusCode() == 404) {
                 return  false;
             } else {

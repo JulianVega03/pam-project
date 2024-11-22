@@ -2,5 +2,7 @@ cloud:
   aws:
     region:
       static: us-east-2
+    instance:
+      enabled: false
     stack:
       auto: false
