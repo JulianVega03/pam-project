@@ -86,6 +86,7 @@ public class AspiranteService implements AspiranteServiceInterface {
         try{
             s3Repository.crearCarpeta(cohorteAbierto.getId() + "/" + newApplicant.getId().toString());
         }catch (Exception e) {
+            System.out.println("ERROR S3: " + e);
             aspiranteRepository.delete(newApplicant);
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error al crear carpeta");
         }
