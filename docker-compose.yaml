@@ -9,14 +9,6 @@ services:
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
-  pam-project:
-    image: julianvega03/pam-project:latest
-    depends_on:
-      - db
-    container_name: pam_project
-    restart: always
-    ports:
-      - "8080:8080"
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin4_container

@@ -31,6 +31,8 @@ public class AspiranteRequest {
 
     private String empresa_trabajo;
 
+    private String pais_trabajo;
+
     private String departamento_trabajo;
 
     private String municipio_trabajo;
