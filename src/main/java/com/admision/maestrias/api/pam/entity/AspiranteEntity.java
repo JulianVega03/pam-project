@@ -143,6 +143,12 @@ public class AspiranteEntity implements Serializable {
     private String empresa_trabajo;
 
     /**
+     * Pais donde trabaja el aspirante
+     */
+    @Column(length = 100)
+    private String pais_trabajo;
+
+    /**
      * Departamento donde trabaja el aspirante
      */
     @Column(nullable = false, length = 50)
