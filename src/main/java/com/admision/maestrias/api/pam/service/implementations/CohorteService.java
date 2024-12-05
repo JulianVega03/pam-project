@@ -146,6 +146,24 @@ public class CohorteService implements CohorteServiceInterface {
         cohorteRepository.save(cohorteEntity);
     }
 
+    @Override
+    public void habilitarEnlace2(String enlace) {
+        CohorteEntity cohorteEntity = cohorteRepository.findCohorteByHabilitado(true);
+        if(cohorteEntity == null)
+            throw new IllegalArgumentException("No hay una cohorte abierta en el sistema.");
+        cohorteEntity.setEnlace_entrevista2(enlace);
+        cohorteRepository.save(cohorteEntity);
+    }
+
+    @Override
+    public void habilitarEnlace3(String enlace) {
+        CohorteEntity cohorteEntity = cohorteRepository.findCohorteByHabilitado(true);
+        if(cohorteEntity == null)
+            throw new IllegalArgumentException("No hay una cohorte abierta en el sistema.");
+        cohorteEntity.setEnlace_entrevista3(enlace);
+        cohorteRepository.save(cohorteEntity);
+    }
+
     /**
      * Guarda el enlace y la fecha límite de la prueba de la cohorte abierta.
      *

@@ -4,6 +4,8 @@ import com.admision.maestrias.api.pam.entity.EstadoEntity;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 public class AspiranteCohorteResponse {
     /**
@@ -30,6 +32,14 @@ public class AspiranteCohorteResponse {
      * Fase del proceso en la que se encuentra el aspirante(estado del aspirante)
      */
     private EstadoEntity estado;
+    /**
+     * Sala de entrevista del aspirante
+     */
+    private String sala_entrevista;
+    /**
+     * Fecha de entrevista del aspirante
+     */
+    private LocalDateTime fecha_entrevista;
 
     private boolean es_egresado_ufps;
 

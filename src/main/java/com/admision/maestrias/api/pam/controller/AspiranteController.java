@@ -209,9 +209,10 @@ public class AspiranteController {
      */
     @Secured("ROLE_ADMIN")
     @PostMapping("/horarioEntrevista")
-    public ResponseEntity<AnyResponse> horarioEntrevista(@RequestParam Integer id, @RequestParam String fecha_entrevista) {
+    public ResponseEntity<AnyResponse> horarioEntrevista(@RequestParam Integer id,
+        @RequestParam String fecha_entrevista, @RequestParam String sala) {
         LocalDateTime fechaentrevista = LocalDateTime.parse(fecha_entrevista, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-        aspiranteService.habilitarFechaEntrevista(id, fechaentrevista);
+        aspiranteService.habilitarFechaEntrevista(id, fechaentrevista, sala);
         return ResponseEntity.ok(new AnyResponse("la fecha de entrevista del aspirante fue asignada con exito")) ;
     }
 
@@ -235,6 +236,7 @@ public class AspiranteController {
         EntrevistaPruebaResponse entrevistaprueba = new EntrevistaPruebaResponse();
         BeanUtils.copyProperties(cohorte, entrevistaprueba);
         entrevistaprueba.setFecha_entrevista(aspiranteDTO.getFecha_entrevista());
+        entrevistaprueba.setEnlace_entrevista(aspiranteDTO.getEnlace_entrevista());
         return entrevistaprueba;
     }
 

@@ -79,8 +79,8 @@ public class AspiranteService implements AspiranteServiceInterface {
             aspiranteEntity.setEstado(estadoRepository.findById(2).get());
             aspiranteEntity.setCohorte(cohorteAbierto);
             newApplicant = aspiranteRepository.save(aspiranteEntity);
-        }catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error al guardar aspirante");
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error al guardar aspirante " + e.getMessage());
         }
 
         try{
@@ -245,18 +245,29 @@ public class AspiranteService implements AspiranteServiceInterface {
         return aspiranteRetornado;
     }
 
+    private String obtenerSala(CohorteEntity cohorteEntity, String sala) {
+        if (sala.equals("3")) {
+            return cohorteEntity.getEnlace_entrevista3();
+        } else if (sala.equals("2")) {
+            return cohorteEntity.getEnlace_entrevista2();
+        } else {
+            return cohorteEntity.getEnlace_entrevista();
+        }
+    }
+
     /**
      * Busca un aspirante por id y le asigna la fecha de la entrevista
      *
      * @param id               id del aspirante
      * @param fecha_entrevista fecha de la entrevista
+     * @param sala
      */
     @Override
-    public void habilitarFechaEntrevista(Integer id, LocalDateTime fecha_entrevista) {
+    public void habilitarFechaEntrevista(Integer id, LocalDateTime fecha_entrevista, String sala) {
         CohorteEntity cohorteEntity = cohorteRepository.findCohorteByHabilitado(true);
         if (cohorteEntity == null)
             throw new NotFoundException("No hay una cohorte habilitada");
-        if (cohorteEntity.getEnlace_entrevista() == null)
+        if (obtenerSala(cohorteEntity, sala) == null)
             throw new NotFoundException("No hay un enlace de entrevista asignado");
 
         Optional<AspiranteEntity> aspirante = aspiranteRepository.findById(id);
@@ -265,6 +276,8 @@ public class AspiranteService implements AspiranteServiceInterface {
         AspiranteEntity aspiranteEntity = aspirante.get();
         try {
             aspiranteEntity.setFecha_entrevista(fecha_entrevista);
+            aspiranteEntity.setEnlace_entrevista(obtenerSala(cohorteEntity, sala));
+            aspiranteEntity.setSala_entrevista(sala);
             aspiranteRepository.save(aspiranteEntity);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error al asignar fecha de entrevista");
@@ -275,7 +288,7 @@ public class AspiranteService implements AspiranteServiceInterface {
         String fechaFormateada = fecha_entrevista.format(formatter);
 
         notificacionService.crearNotificacion("Tiene una entrevista programada para el día " + fechaFormateada
-            + " este es el enlace para acceder: " + cohorteEntity.getEnlace_entrevista(), aspiranteEntity.getId());
+            + " este es el enlace para acceder: " + obtenerSala(cohorteEntity, sala), aspiranteEntity.getId());
     }
 
     /**

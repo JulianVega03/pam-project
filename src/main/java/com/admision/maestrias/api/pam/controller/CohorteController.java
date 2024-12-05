@@ -127,6 +127,20 @@ public class CohorteController {
         return ResponseEntity.ok( new AnyResponse("El enlace ha sido guardado exitosamente."));
     }
 
+    @Secured("ROLE_ADMIN")
+    @PostMapping("/entrevistaEnlace2")
+    public ResponseEntity<AnyResponse> guardarEnlace2(@RequestParam String enlace) {
+        cohorteService.habilitarEnlace2(enlace);
+        return ResponseEntity.ok( new AnyResponse("El enlace ha sido guardado exitosamente."));
+    }
+
+    @Secured("ROLE_ADMIN")
+    @PostMapping("/entrevistaEnlace3")
+    public ResponseEntity<AnyResponse> guardarEnlace3(@RequestParam String enlace) {
+        cohorteService.habilitarEnlace3(enlace);
+        return ResponseEntity.ok( new AnyResponse("El enlace ha sido guardado exitosamente."));
+    }
+
     /**
      * Habilita la prueba para la cohorte abierta como administrador.
      * Requiere rol de administrador para acceder a este endpoint.

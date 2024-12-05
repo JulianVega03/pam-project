@@ -232,6 +232,16 @@ public class AspiranteEntity implements Serializable {
     private LocalDateTime fecha_entrevista;
 
     /**
+     * Enlace de la sala para presentar la entrevista
+     */
+    private String enlace_entrevista;
+
+    /**
+     * Sala para presentar la entrevista
+     */
+    private String sala_entrevista;
+
+    /**
      * Relación muchos a uno entre Aspirante y Estado
      */
     @ManyToOne

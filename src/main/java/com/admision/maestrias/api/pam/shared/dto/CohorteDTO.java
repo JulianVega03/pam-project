@@ -12,6 +12,8 @@ public class CohorteDTO {
     private Date fechaFin;
     private boolean habilitado;
     private String enlace_entrevista;
+    private String enlace_entrevista2;
+    private String enlace_entrevista3;
     private String enlace_prueba;
     private LocalDateTime fechaMaxPrueba;
 }

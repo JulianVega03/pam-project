@@ -72,6 +72,10 @@ public class AspiranteDTO {
 
     private LocalDateTime fecha_entrevista;
 
+    private String enlace_entrevista;
+
+    private String sala_entrevista;
+
     private EstadoEntity estado;
     
 
