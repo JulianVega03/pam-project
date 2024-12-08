@@ -152,14 +152,14 @@ public class AspiranteEntity implements Serializable {
      * Departamento donde trabaja el aspirante
      */
     @Column(nullable = false, length = 50)
-    @NotEmpty
+//    @NotEmpty
     private String departamento_trabajo;
 
     /**
      * Municipio donde trabaja el aspirante
      */
     @Column(nullable = false, length = 50)
-    @NotEmpty
+//    @NotEmpty
     private String municipio_trabajo;
 
     /**

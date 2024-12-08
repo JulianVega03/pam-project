@@ -71,11 +71,17 @@ public class CohorteService implements CohorteServiceInterface {
                 abrirCohorteAuto();
             }
             newCohorte = cohorteRepository.save(cohorteEntity);
+
+            try {
+                s3Repository.crearCarpeta(newCohorte.getId().toString());
+            } catch (Exception e) {
+                System.out.println("Error --> " + e.getMessage());
+                cohorteRepository.delete(newCohorte);
+                throw new RuntimeException("No se pudo crear la carpeta en S3, la cohorte no se ha guardado.");
+            }
         } else {
             throw new IllegalArgumentException("El rango de fechas del cohorte se superpone con otros cohortes existentes.");
         }
-
-        s3Repository.crearCarpeta(newCohorte.getId().toString());
 
     }
 
