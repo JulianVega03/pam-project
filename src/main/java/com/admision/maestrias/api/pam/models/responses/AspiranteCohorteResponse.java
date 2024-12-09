@@ -40,6 +40,10 @@ public class AspiranteCohorteResponse {
      * Fecha de entrevista del aspirante
      */
     private LocalDateTime fecha_entrevista;
+    /**
+     * Puntaje de entrevista del aspirante
+     */
+    private Integer puntaje_entrevista;
 
     private boolean es_egresado_ufps;
 
