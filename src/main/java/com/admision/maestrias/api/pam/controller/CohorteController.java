@@ -73,7 +73,7 @@ public class CohorteController {
      * @throws RuntimeException         Si no hay un cohorte actualmente habilitado.
      */
     @PutMapping("/fechaFin")
-    @Secured("ROLE_ADMIN")
+    @Secured({ "ROLE_ADMIN", "ROLE_ENCARGADO" })
     public ResponseEntity<AnyResponse> ampliarFechaFinCohorte(
             @RequestParam("nuevaFechaFin") String nuevaFechaFin) throws ParseException {
         
@@ -102,7 +102,7 @@ public class CohorteController {
      *
      * @return una lista con los cohorte DTOs
      */
-    @Secured("ROLE_ADMIN")
+    @Secured({ "ROLE_ADMIN", "ROLE_ENCARGADO" })
     @GetMapping
     public List<CohorteDTO> listarCohorte() {
         return cohorteService.listarCohorte();
@@ -120,21 +120,21 @@ public class CohorteController {
      *         con el enlace de la entrevista
      *
      */
-    @Secured("ROLE_ADMIN")
+    @Secured({ "ROLE_ADMIN", "ROLE_ENCARGADO" })
     @PostMapping("/entrevistaEnlace")
     public ResponseEntity<AnyResponse> guardarEnlace(@RequestParam String enlace) {
         cohorteService.habilitarEnlace(enlace);
         return ResponseEntity.ok( new AnyResponse("El enlace ha sido guardado exitosamente."));
     }
 
-    @Secured("ROLE_ADMIN")
+    @Secured({ "ROLE_ADMIN", "ROLE_ENCARGADO" })
     @PostMapping("/entrevistaEnlace2")
     public ResponseEntity<AnyResponse> guardarEnlace2(@RequestParam String enlace) {
         cohorteService.habilitarEnlace2(enlace);
         return ResponseEntity.ok( new AnyResponse("El enlace ha sido guardado exitosamente."));
     }
 
-    @Secured("ROLE_ADMIN")
+    @Secured({ "ROLE_ADMIN", "ROLE_ENCARGADO" })
     @PostMapping("/entrevistaEnlace3")
     public ResponseEntity<AnyResponse> guardarEnlace3(@RequestParam String enlace) {
         cohorteService.habilitarEnlace3(enlace);
@@ -150,7 +150,7 @@ public class CohorteController {
      * @return El objeto CohorteResponse con los datos de la cohorte habilitada para
      *         la prueba.
      */
-    @Secured("ROLE_ADMIN")
+    @Secured({ "ROLE_ADMIN", "ROLE_ENCARGADO" })
     @PostMapping("/prueba")
     public ResponseEntity<AnyResponse> habilitarPrueba(@RequestParam String enlace, @RequestParam String fecha_prueba) {
         LocalDateTime fechaPrueba = null;
