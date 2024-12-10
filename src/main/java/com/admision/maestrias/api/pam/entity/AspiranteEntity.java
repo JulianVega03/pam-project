@@ -248,6 +248,30 @@ public class AspiranteEntity implements Serializable {
     @JoinColumn(name = "estado_id", nullable = false)
     private EstadoEntity estado;
 
+
+    @NotEmpty
+    private String documentType;
+    @NotEmpty
+    private String estadoCivilTypes;
+    @NotEmpty
+    private String zonaResidenciaTypes;
+    @NotEmpty
+    private String grupoEtnicoTypes;
+    @NotEmpty
+    private String puebloIndigenaTypes;
+    private String otroPueblo;
+    @NotEmpty
+    private String poseeDiscapacidadTypes;
+
+    private String discapacidadTypes;
+    @NotEmpty
+    private String capacidadxcepcionalTypes;
+    @NotEmpty
+    private String tipoVinculacionTypes;
+    @NotEmpty
+    private String promedioPregrado;
+
+
     /**
      * Relación uno a muchos entre Aspirante y Documentos
      */

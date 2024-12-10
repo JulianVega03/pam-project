@@ -77,7 +77,32 @@ public class AspiranteDTO {
     private String sala_entrevista;
 
     private EstadoEntity estado;
-    
+
+    private String pais_trabajo;
+
+    private String documentType;
+
+    private String estadoCivilTypes;
+
+    private String zonaResidenciaTypes;
+
+    private String grupoEtnicoTypes;
+
+    private String puebloIndigenaTypes;
+
+    private String otroPueblo;
+
+    private String poseeDiscapacidadTypes;
+
+    private String discapacidadTypes;
+
+    private String capacidadxcepcionalTypes;
+
+    private String tipoVinculacionTypes;
+
+    private String promedioPregrado;
+
+
 
     @Override
     public String toString() {
