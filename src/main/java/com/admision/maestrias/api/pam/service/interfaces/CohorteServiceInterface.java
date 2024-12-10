@@ -19,7 +19,11 @@ public interface CohorteServiceInterface {
 
     public void habilitarEnlace(String enlace);
 
-     public CohorteDTO habilitarPrueba(String enlace , LocalDateTime fechaMaxPrueba);
+    public void habilitarEnlace2(String enlace);
+
+    public void habilitarEnlace3(String enlace);
+
+    public CohorteDTO habilitarPrueba(String enlace , LocalDateTime fechaMaxPrueba);
 
     public void ampliarFechaFinCohorte(Date nuevaFechaFin);
 

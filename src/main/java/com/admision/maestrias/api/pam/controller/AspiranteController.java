@@ -189,7 +189,7 @@ public class AspiranteController {
      *         Cada objeto CalificacionesResponse representa un aspirante y contiene
      *         los campos correspondientes a las calificaciones.
      */
-    @Secured("ROLE_ADMIN")
+    @Secured({ "ROLE_ADMIN", "ROLE_ENCARGADO" })
     @GetMapping("/listarCalificaciones")
     public List<AdmitidosResponse> listarCalificacionesAspirantes() {
         List<AspiranteDTO> aspiranteDTOs = aspiranteService.listarAdmitidos(5);
@@ -207,11 +207,12 @@ public class AspiranteController {
      * @return objeto aspiranteDTO que devuelve toda la información del aspirante
      *         y la fecha de la entrevista
      */
-    @Secured("ROLE_ADMIN")
+    @Secured({ "ROLE_ADMIN", "ROLE_ENCARGADO" })
     @PostMapping("/horarioEntrevista")
-    public ResponseEntity<AnyResponse> horarioEntrevista(@RequestParam Integer id, @RequestParam String fecha_entrevista) {
+    public ResponseEntity<AnyResponse> horarioEntrevista(@RequestParam Integer id,
+        @RequestParam String fecha_entrevista, @RequestParam String sala) {
         LocalDateTime fechaentrevista = LocalDateTime.parse(fecha_entrevista, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-        aspiranteService.habilitarFechaEntrevista(id, fechaentrevista);
+        aspiranteService.habilitarFechaEntrevista(id, fechaentrevista, sala);
         return ResponseEntity.ok(new AnyResponse("la fecha de entrevista del aspirante fue asignada con exito")) ;
     }
 
@@ -235,6 +236,7 @@ public class AspiranteController {
         EntrevistaPruebaResponse entrevistaprueba = new EntrevistaPruebaResponse();
         BeanUtils.copyProperties(cohorte, entrevistaprueba);
         entrevistaprueba.setFecha_entrevista(aspiranteDTO.getFecha_entrevista());
+        entrevistaprueba.setEnlace_entrevista(aspiranteDTO.getEnlace_entrevista());
         return entrevistaprueba;
     }
 
@@ -246,7 +248,7 @@ public class AspiranteController {
      *                                  aspirante
      * @return la respuesta del proceso de calificación
      */
-    @Secured("ROLE_ADMIN")
+    @Secured({ "ROLE_ADMIN", "ROLE_ENCARGADO" })
     @PostMapping("/calificacionDocumentos")
     public ResponseEntity<AnyResponse> calificarDocsIndiv(
             @RequestBody @Valid AspiranteDocumentoRequest aspiranteDocumentoRequest) {
@@ -271,7 +273,7 @@ public class AspiranteController {
      *         Si no se pudo calificar la prueba del aspirante, el mensaje será "No
      *         se pudo calificar la prueba del aspirante."
      */
-    @Secured("ROLE_ADMIN")
+    @Secured({ "ROLE_ADMIN", "ROLE_ENCARGADO" })
     @PostMapping("/calificacionPrueba")
     public ResponseEntity<AnyResponse> calificarPruebaAspirante(@RequestBody @Valid AspirantePruebaRequest aspirantePruebaRequest) {
         aspiranteService.calificarPruebaAspirante(aspirantePruebaRequest.getId(),
@@ -292,7 +294,7 @@ public class AspiranteController {
      *         Si no se pudo calificar la prueba del aspirante, el mensaje será "No
      *         se pudo calificar la prueba del aspirante."
      */
-    @Secured("ROLE_ADMIN")
+    @Secured({ "ROLE_ADMIN", "ROLE_ENCARGADO" })
     @PostMapping("/calificacionEntrevista")
     public ResponseEntity<AnyResponse> calificarEntrevistaAspirante(
             @RequestBody @Valid AspiranteEntrevistaRequest aspiranteEntrevistaRequest) {
@@ -309,7 +311,7 @@ public class AspiranteController {
      * @return un objeto AnyResponse con un mensaje indicando el resultado de la
      *         operación.
      */
-    @Secured("ROLE_ADMIN")
+    @Secured({ "ROLE_ADMIN", "ROLE_ENCARGADO" })
     @PostMapping("/admitir")
     public ResponseEntity<AnyResponse> admitirAspirante(@RequestParam Integer aspiranteId) {
         aspiranteService.admitirAspirante(aspiranteId);
@@ -323,7 +325,7 @@ public class AspiranteController {
      * @return una lista de objetos AdmitidosResponse con la información de los
      *         aspirantes admitidos
      */
-    @Secured("ROLE_ADMIN")
+    @Secured({ "ROLE_ADMIN", "ROLE_ENCARGADO" })
     @GetMapping("/admitidos")
     public List<AdmitidosResponse> listarAdmitidos() {
         List<AspiranteDTO> aspiranteDTOs = aspiranteService.listarAdmitidos(6);
@@ -340,7 +342,7 @@ public class AspiranteController {
      * @return Una lista de objetos CohorteAspirantesResponse que representan los
      *         aspirantes históricos del cohorte.
      */
-    @Secured("ROLE_ADMIN")
+    @Secured({ "ROLE_ADMIN", "ROLE_ENCARGADO" })
     @GetMapping("/historicos")
     public List<CohorteAspirantesResponse> obtenerAspirantesHistoricosCohorte(@RequestParam Integer cohorteId) {
         List<AspiranteDTO> aspirantes = aspiranteService.obtenerAspirantesHistoricosCohorte(cohorteId);
@@ -415,7 +417,7 @@ public class AspiranteController {
      *         cambiar o no
      *         es_egresado_ufps
      */
-    @Secured("ROLE_ADMIN")
+    @Secured({ "ROLE_ADMIN", "ROLE_ENCARGADO" })
     @PostMapping("/cambiarEsEgresado")
     public ResponseEntity<AnyResponse> cambiarEsEgresado(@RequestParam Integer aspiranteId) {
         aspiranteService.cambiarEsEgresado(aspiranteId);

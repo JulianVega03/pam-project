@@ -25,7 +25,7 @@ public interface AspiranteServiceInterface {
   
     public AspiranteDTO getAspiranteById(int id);
 
-    public void habilitarFechaEntrevista(Integer id, LocalDateTime fecha_entrevista);
+    public void habilitarFechaEntrevista(Integer id, LocalDateTime fecha_entrevista, String sala);
 
     public void calificarPruebaAspirante (int id, int calificacionPrueba);
 

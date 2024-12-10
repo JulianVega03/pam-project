@@ -152,14 +152,14 @@ public class AspiranteEntity implements Serializable {
      * Departamento donde trabaja el aspirante
      */
     @Column(nullable = false, length = 50)
-    @NotEmpty
+//    @NotEmpty
     private String departamento_trabajo;
 
     /**
      * Municipio donde trabaja el aspirante
      */
     @Column(nullable = false, length = 50)
-    @NotEmpty
+//    @NotEmpty
     private String municipio_trabajo;
 
     /**
@@ -232,11 +232,45 @@ public class AspiranteEntity implements Serializable {
     private LocalDateTime fecha_entrevista;
 
     /**
+     * Enlace de la sala para presentar la entrevista
+     */
+    private String enlace_entrevista;
+
+    /**
+     * Sala para presentar la entrevista
+     */
+    private String sala_entrevista;
+
+    /**
      * Relación muchos a uno entre Aspirante y Estado
      */
     @ManyToOne
     @JoinColumn(name = "estado_id", nullable = false)
     private EstadoEntity estado;
+
+
+    @NotEmpty
+    private String documentType;
+    @NotEmpty
+    private String estadoCivilTypes;
+    @NotEmpty
+    private String zonaResidenciaTypes;
+    @NotEmpty
+    private String grupoEtnicoTypes;
+    @NotEmpty
+    private String puebloIndigenaTypes;
+    private String otroPueblo;
+    @NotEmpty
+    private String poseeDiscapacidadTypes;
+
+    private String discapacidadTypes;
+    @NotEmpty
+    private String capacidadxcepcionalTypes;
+    @NotEmpty
+    private String tipoVinculacionTypes;
+    @NotEmpty
+    private String promedioPregrado;
+
 
     /**
      * Relación uno a muchos entre Aspirante y Documentos

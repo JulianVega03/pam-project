@@ -64,6 +64,17 @@ public class CohorteEntity implements Serializable{
     @Column(length = 255)
     private String enlace_entrevista;
 
+    /**
+     * Enlace de ingreso a la entrevista 2
+     */
+    @Column(length = 255)
+    private String enlace_entrevista2;
+
+    /**
+     * Enlace de ingreso a la entrevista 3
+     */
+    @Column(length = 255)
+    private String enlace_entrevista3;
 
     /**
      * Enlace para presentar la prueba

@@ -71,11 +71,17 @@ public class CohorteService implements CohorteServiceInterface {
                 abrirCohorteAuto();
             }
             newCohorte = cohorteRepository.save(cohorteEntity);
+
+            try {
+                s3Repository.crearCarpeta(newCohorte.getId().toString());
+            } catch (Exception e) {
+                System.out.println("Error --> " + e.getMessage());
+                cohorteRepository.delete(newCohorte);
+                throw new RuntimeException("No se pudo crear la carpeta en S3, la cohorte no se ha guardado.");
+            }
         } else {
             throw new IllegalArgumentException("El rango de fechas del cohorte se superpone con otros cohortes existentes.");
         }
-
-        s3Repository.crearCarpeta(newCohorte.getId().toString());
 
     }
 
@@ -143,6 +149,24 @@ public class CohorteService implements CohorteServiceInterface {
         if(cohorteEntity == null)
             throw new IllegalArgumentException("No hay una cohorte abierta en el sistema.");
         cohorteEntity.setEnlace_entrevista(enlace);
+        cohorteRepository.save(cohorteEntity);
+    }
+
+    @Override
+    public void habilitarEnlace2(String enlace) {
+        CohorteEntity cohorteEntity = cohorteRepository.findCohorteByHabilitado(true);
+        if(cohorteEntity == null)
+            throw new IllegalArgumentException("No hay una cohorte abierta en el sistema.");
+        cohorteEntity.setEnlace_entrevista2(enlace);
+        cohorteRepository.save(cohorteEntity);
+    }
+
+    @Override
+    public void habilitarEnlace3(String enlace) {
+        CohorteEntity cohorteEntity = cohorteRepository.findCohorteByHabilitado(true);
+        if(cohorteEntity == null)
+            throw new IllegalArgumentException("No hay una cohorte abierta en el sistema.");
+        cohorteEntity.setEnlace_entrevista3(enlace);
         cohorteRepository.save(cohorteEntity);
     }
 

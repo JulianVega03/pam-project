@@ -46,4 +46,28 @@ public class AspiranteRequest {
     private String exp_laboral;
 
     private Boolean es_egresado_ufps;
+
+    private Integer puntaje_prueba;
+
+    private String documentType;
+
+    private String estadoCivilTypes;
+
+    private String zonaResidenciaTypes;
+
+    private String grupoEtnicoTypes;
+
+    private String puebloIndigenaTypes;
+
+    private String otroPueblo;
+
+    private String poseeDiscapacidadTypes;
+
+    private String discapacidadTypes;
+
+    private String capacidadxcepcionalTypes;
+
+    private String tipoVinculacionTypes;
+
+    private String promedioPregrado;
 }
