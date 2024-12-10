@@ -70,4 +70,6 @@ public class AspiranteRequest {
     private String tipoVinculacionTypes;
 
     private String promedioPregrado;
+
+    private String lugarExpedicion;
 }

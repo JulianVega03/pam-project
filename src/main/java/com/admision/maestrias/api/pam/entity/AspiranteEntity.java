@@ -158,8 +158,7 @@ public class AspiranteEntity implements Serializable {
     /**
      * Municipio donde trabaja el aspirante
      */
-    @Column(nullable = false, length = 50)
-//    @NotEmpty
+    @Column(length = 50)
     private String municipio_trabajo;
 
     /**
@@ -270,6 +269,9 @@ public class AspiranteEntity implements Serializable {
     private String tipoVinculacionTypes;
     @NotEmpty
     private String promedioPregrado;
+    @NotEmpty
+    private String lugarExpedicion;
+
 
 
     /**

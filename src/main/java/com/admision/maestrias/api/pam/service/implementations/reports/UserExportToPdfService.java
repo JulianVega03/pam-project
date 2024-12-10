@@ -58,6 +58,9 @@ public class UserExportToPdfService extends ReportAbstract {
             cell.setPhrase(new Phrase(item.getNo_documento(), getFontContent()));
             table.addCell(cell);
 
+            cell.setPhrase(new Phrase(item.getLugarExpedicion(), getFontContent()));
+            table.addCell(cell);
+
             cell.setPhrase(new Phrase(item.getFecha_exp_di().toString().split(" ")[0], getFontContent()));
             table.addCell(cell);
 
@@ -143,7 +146,7 @@ public class UserExportToPdfService extends ReportAbstract {
 
         String[] headers = new String[]{"No", "Nombres", "Apellidos", "Lugar de nacimiento", "Deparmento de residencia",
                 "Municipio de residencia", "Dirección de residencia", "Teléfono", "Tipo de documento de identidad",
-                "Número documento identidad", "Fecha de Expedición del documento de identidad", "Fecha de nacimiento",
+                "Número documento identidad", "Lugar de expedición del documento de identidad", "Fecha de Expedición del documento de identidad", "Fecha de nacimiento",
                 "Sexo biológico", "Estado Civil", "Zona de residencia", "Grupo Étnico", "Pueblo indígena",
                 "Persona con discapacidad", "Persona con Capacidad Excepcional", "Tipo de Vinculación al Programa",
                 "Empresa donde trabaja", "País donde trabaja", "Deparmento donde trabaja", "Municipio donde trabaja",

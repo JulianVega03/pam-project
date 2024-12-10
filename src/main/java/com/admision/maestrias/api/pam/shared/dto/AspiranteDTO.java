@@ -102,6 +102,8 @@ public class AspiranteDTO {
 
     private String promedioPregrado;
 
+    private String lugarExpedicion;
+
 
 
     @Override

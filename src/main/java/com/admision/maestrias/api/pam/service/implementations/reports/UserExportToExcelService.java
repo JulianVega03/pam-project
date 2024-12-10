@@ -38,6 +38,7 @@ public class UserExportToExcelService extends ReportAbstract {
             createCell(row, columnCount++, aspiranteEntity.getTelefono(), style);
             createCell(row, columnCount++, aspiranteEntity.getDocumentType(), style);
             createCell(row, columnCount++, aspiranteEntity.getNo_documento(), style);
+            createCell(row, columnCount++, aspiranteEntity.getLugarExpedicion(), style);
             createCell(row, columnCount++, aspiranteEntity.getFecha_exp_di().toString().split(" ")[0], style);
             createCell(row, columnCount++, aspiranteEntity.getFecha_nac().toString().split(" ")[0], style);
             createCell(row, columnCount++, aspiranteEntity.getGenero(), style);
@@ -45,7 +46,9 @@ public class UserExportToExcelService extends ReportAbstract {
             createCell(row, columnCount++, aspiranteEntity.getZonaResidenciaTypes(), style);
             createCell(row, columnCount++, aspiranteEntity.getGrupoEtnicoTypes(), style);
             createCell(row, columnCount++, aspiranteEntity.getPuebloIndigenaTypes(), style);
+            createCell(row, columnCount++, aspiranteEntity.getOtroPueblo(), style);
             createCell(row, columnCount++, aspiranteEntity.getPoseeDiscapacidadTypes(), style);
+            createCell(row, columnCount++, aspiranteEntity.getDiscapacidadTypes(), style);
             createCell(row, columnCount++, aspiranteEntity.getCapacidadxcepcionalTypes(), style);
             createCell(row, columnCount++, aspiranteEntity.getTipoVinculacionTypes(), style);
             createCell(row, columnCount++, aspiranteEntity.getEmpresa_trabajo(), style);
@@ -73,9 +76,9 @@ public class UserExportToExcelService extends ReportAbstract {
         // write sheet, title & header
         String[] headers = new String[]{"No", "Nombres", "Apellidos", "Lugar de nacimiento", "Deparmento de residencia",
             "Municipio de residencia", "Dirección de residencia", "Teléfono", "Tipo de documento de identidad",
-            "Número documento identidad", "Fecha de Expedición del documento de identidad", "Fecha de nacimiento",
-            "Sexo biológico", "Estado Civil", "Zona de residencia", "Grupo Étnico", "Pueblo indígena",
-            "Persona con discapacidad", "Persona con Capacidad Excepcional", "Tipo de Vinculación al Programa",
+            "Número documento identidad", "Lugar de expedición del documento de identidad", "Fecha de Expedición del documento de identidad", "Fecha de nacimiento",
+            "Sexo biológico", "Estado Civil", "Zona de residencia", "Grupo Étnico", "Pueblo indígena", "Otro pueblo indigena",
+            "Persona con discapacidad", "Discapacidad", "Persona con Capacidad Excepcional", "Tipo de Vinculación al Programa",
             "Empresa donde trabaja", "País donde trabaja", "Deparmento donde trabaja", "Municipio donde trabaja",
             "Dirección donde trabaja", "Estudios a nivel de formación universitaria (pre-grado)",
             "Estudios a nivel de formación avanzada, especifique los Títulos obtenidos (postgrado)", "Promedio Ponderado Acumulado",

@@ -104,4 +104,6 @@ public class AspiranteCohorteResponse {
 
     private String promedioPregrado;
 
+    private String lugarExpedicion;
+
 }
